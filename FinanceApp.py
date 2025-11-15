@@ -24,8 +24,3 @@ class FinanceAnalyzer:
         
         return full_data
 
-    def FilterByCategory(self, expenses, category):
-        return [cat[3] for cat in expenses if cat[3].lower() == category.lower()]
-
-    def NegativeExpenses(self, expenses):
-        return [exp for exp in expenses if exp[2] < 0]
