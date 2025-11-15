@@ -16,7 +16,7 @@ class FinanceAnalyzer:
                 date, des, amount, cat = line
 
                 full_data.append((
-                    date.datetime.strptime(date, "%Y-%m-%d"),
+                    datetime.strptime(date, "%Y-%m-%d"),
                     des,
                     float(amount),
                     cat
@@ -25,7 +25,26 @@ class FinanceAnalyzer:
         return full_data
 
     def FilterByCategory(self, expenses, category):
-        return [cat[3] for cat in expenses if cat[3].lower() == category.lower()]
+        return [cat for cat in expenses if cat[3].lower() == category.lower()]
 
     def NegativeExpenses(self, expenses):
         return [exp for exp in expenses if exp[2] < 0]
+
+    def ReportExpenses(self):
+        data = self.FetchData()
+        
+        category = set(cat[3] for cat in data) #get each category's names
+        costs = []
+        for xx in category:
+            costs.append(
+                sum(map(
+                    lambda exp: exp[2],
+                    self.FilterByCategory(data, xx)
+                )
+            ))
+        
+        return dict(zip(category, costs))
+
+BellaShop = FinanceAnalyzer('transaction.csv')
+all_data = BellaShop.FetchData()
+print(BellaShop.ReportExpenses())
