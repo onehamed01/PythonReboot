@@ -1,2 +1,2 @@
 import json
-from main import sample_data
+from main import expenses

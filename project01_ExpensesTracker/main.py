@@ -1,8 +1,7 @@
 from datetime import datetime
 current_date = datetime.now().strftime("%Y-%m-%d")
 
-def sample_data():
-    expenses = [
+expenses = [
         {
         'date':current_date, 
         'amount':30.10,
@@ -17,7 +16,11 @@ def sample_data():
         },
     ]
 
+def sample_data():
     if expenses:
         print('Date\tAmount\tCategory\tNote')
         for el in expenses:
-            print(*el.values(), sep='\t')
+            print(f"{el.get('date')}\t{el.get('amount')}\t{el.get('category')}\t{el.get('description')}\t")
+
+
+        
