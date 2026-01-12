@@ -1,12 +1,23 @@
 from datetime import datetime
 current_date = datetime.now().strftime("%Y-%m-%d")
 
-expenses = [
-    (current_date, 12.40, 'Food', 'ASDA weekly shopping'),
-    (current_date, 43.70, 'Internet', 'Vodafone Bill'),
-]
+def sample_data():
+    expenses = [
+        {
+        'date':current_date, 
+        'amount':30.10,
+        'category':'Food', 
+        'description':'Asda Weekly shopping'
+        },
+        {
+        'date':current_date,
+        'amount':43.70,
+        'category':'Bill', 
+        'description':'Vodafone Internet'
+        },
+    ]
 
-if expenses:
-    print("Date\tAmount\tCategory\tNote")
-    for i in expenses:
-        print(*i, sep='\t')
+    if expenses:
+        print('Date\tAmount\tCategory\tNote')
+        for el in expenses:
+            print(*el.values(), sep='\t')
